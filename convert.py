@@ -1,19 +1,22 @@
 import requests
 import json
 
-url = "https://gsamuel-morse-code-v1.p.rapidapi.com/"
 
-text = 'How you doing?'
+def convert(text):
 
-payload = "{\n    \"text\": \""+text+"Hello World"+"\"\n}"
-headers = {
-    'content-type': "application/json",
-    'x-rapidapi-key': "0c9fe16e68mshae94b6721541cb9p17183bjsn808deabde345",
-    'x-rapidapi-host': "gsamuel-morse-code-v1.p.rapidapi.com"
-}
+    url = "https://gsamuel-morse-code-v1.p.rapidapi.com/"
 
-response = requests.request("POST", url, data=payload, headers=headers)
+    # text = 'How you doing?'
 
-jsonToPython = json.loads(response.text)
+    payload = "{\n    \"text\": \""+text+"\"\n}"
+    headers = {
+        'content-type': "application/json",
+        'x-rapidapi-key': "0c9fe16e68mshae94b6721541cb9p17183bjsn808deabde345",
+        'x-rapidapi-host': "gsamuel-morse-code-v1.p.rapidapi.com"
+    }
 
-print(jsonToPython['code'])
+    response = requests.request("POST", url, data=payload, headers=headers)
+
+    jsonToPython = json.loads(response.text)
+
+    return (jsonToPython['code'])
